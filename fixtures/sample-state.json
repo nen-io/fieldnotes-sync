@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "authority": [
+    {
+      "id": "note-walk",
+      "title": "A slower kind of morning",
+      "body": "Take the long way to the coffee shop.\n\nNotice the light in the windows, the small gardens, the city before it gets busy.\n\nBring a notebook. Leave a little room for something unexpected.",
+      "revision": 1,
+      "deleted": false
+    },
+    {
+      "id": "note-ideas",
+      "title": "Things worth making",
+      "body": "A place to gather small, useful ideas.\n\n• A reading corner by the window\n• A map of favourite walking routes\n• More time for unhurried conversations",
+      "revision": 1,
+      "deleted": false
+    },
+    {
+      "id": "note-packing",
+      "title": "For the next little trip",
+      "body": "Notebook, pencil, camera.\nA good book and a light jacket.\n\nLeave the schedule a little open.",
+      "revision": 1,
+      "deleted": false
+    }
+  ],
+  "receipts": [],
+  "clients": {
+    "laptop": {
+      "online": true,
+      "baseline": [
+        {
+          "id": "note-walk",
+          "title": "A slower kind of morning",
+          "body": "Take the long way to the coffee shop.\n\nNotice the light in the windows, the small gardens, the city before it gets busy.\n\nBring a notebook. Leave a little room for something unexpected.",
+          "revision": 1,
+          "deleted": false
+        },
+        {
+          "id": "note-ideas",
+          "title": "Things worth making",
+          "body": "A place to gather small, useful ideas.\n\n• A reading corner by the window\n• A map of favourite walking routes\n• More time for unhurried conversations",
+          "revision": 1,
+          "deleted": false
+        },
+        {
+          "id": "note-packing",
+          "title": "For the next little trip",
+          "body": "Notebook, pencil, camera.\nA good book and a light jacket.\n\nLeave the schedule a little open.",
+          "revision": 1,
+          "deleted": false
+        }
+      ],
+      "outbox": [],
+      "drafts": [],
+      "selected": "note-walk",
+      "loseNextAck": false
+    },
+    "pocket": {
+      "online": true,
+      "baseline": [
+        {
+          "id": "note-walk",
+          "title": "A slower kind of morning",
+          "body": "Take the long way to the coffee shop.\n\nNotice the light in the windows, the small gardens, the city before it gets busy.\n\nBring a notebook. Leave a little room for something unexpected.",
+          "revision": 1,
+          "deleted": false
+        },
+        {
+          "id": "note-ideas",
+          "title": "Things worth making",
+          "body": "A place to gather small, useful ideas.\n\n• A reading corner by the window\n• A map of favourite walking routes\n• More time for unhurried conversations",
+          "revision": 1,
+          "deleted": false
+        },
+        {
+          "id": "note-packing",
+          "title": "For the next little trip",
+          "body": "Notebook, pencil, camera.\nA good book and a light jacket.\n\nLeave the schedule a little open.",
+          "revision": 1,
+          "deleted": false
+        }
+      ],
+      "outbox": [],
+      "drafts": [],
+      "selected": "note-walk",
+      "loseNextAck": false
+    }
+  },
+  "ledger": [],
+  "nextId": 1,
+  "nextLog": 1
+}
