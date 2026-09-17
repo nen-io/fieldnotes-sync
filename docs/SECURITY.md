@@ -50,3 +50,5 @@ A meta policy cannot provide every response-header protection. In particular, `f
 ## Reporting
 
 For sensitive findings, use the repository's private vulnerability reporting if enabled. Otherwise contact the repository owner through their public GitHub profile to arrange a private channel. Do not publish credentials, private notebook exports, or live exploit data in a public issue. Include a minimal synthetic reproduction, affected version, expected invariant, and observed behavior.
+
+The Local work tray is a derived view of already validated state. It renders note titles as React text and does not expand collection or payload budgets. Keyboard shortcuts are scoped to their notebook pane; they invoke existing transitions and cannot bypass save validation, CAS, or receipt checks. Focus refs grant no new persistence or network capability.

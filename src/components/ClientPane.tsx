@@ -1,15 +1,37 @@
+import { useLayoutEffect, useRef } from 'react';
+import { LocalWork } from './LocalWork';
 import { displayedNotes, LIMITS, type ClientId, type Simulation } from '../domain/model';
 import type { Action } from '../domain/actions';
 export function ClientPane({
   id,
   simulation,
-  act,
+  act: dispatch,
 }: {
   id: ClientId;
   simulation: Simulation;
   act: (action: Action) => void;
 }) {
   const client = simulation.clients[id];
+  const titleInput = useRef<HTMLInputElement>(null);
+  const bodyInput = useRef<HTMLTextAreaElement>(null);
+  const picker = useRef<HTMLSelectElement>(null);
+  const focusRequest = useRef<{ kind: 'new' | 'resolve'; previous: string | null } | null>(null);
+  const act = (action: Action) => {
+    if (action.type === 'new' || action.type === 'resolve')
+      focusRequest.current = { kind: action.type, previous: client.selected };
+    dispatch(action);
+  };
+  useLayoutEffect(() => {
+    const request = focusRequest.current;
+    focusRequest.current = null;
+    if (request?.kind === 'new' && request.previous !== client.selected) {
+      titleInput.current?.focus();
+      titleInput.current?.select();
+    } else if (request?.kind === 'resolve') {
+      const target = bodyInput.current?.disabled ? picker.current : bodyInput.current;
+      target?.focus();
+    }
+  });
   const notes = displayedNotes(client);
   const note = notes.find((item) => item.id === client.selected);
   const draft = client.drafts.find((item) => item.noteId === note?.id);
@@ -23,6 +45,13 @@ export function ClientPane({
       className={`client-pane ${id}`}
       aria-labelledby={`${id}-heading`}
       data-testid={`client-${id}`}
+      onKeyDown={(event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's' && !event.altKey) {
+          event.preventDefault();
+          if (draft && note && !conflict && !note.deleted)
+            act({ type: 'save', client: id, noteId: note.id });
+        }
+      }}
     >
       <header className="device-header">
         <div className="device-identity">
@@ -63,6 +92,7 @@ export function ClientPane({
         <div>
           <select
             id={`${id}-note`}
+            ref={picker}
             value={client.selected ?? ''}
             onChange={(event) => act({ type: 'select', client: id, noteId: event.target.value })}
           >
@@ -86,6 +116,11 @@ export function ClientPane({
           </button>
         </div>
       </div>
+      <LocalWork
+        client={client}
+        name={name}
+        onSelect={(noteId) => act({ type: 'select', client: id, noteId })}
+      />
       {note ? (
         <>
           <div className="paper">
@@ -107,6 +142,9 @@ export function ClientPane({
             </label>
             <input
               id={`${id}-title`}
+              ref={titleInput}
+              aria-invalid={Boolean(draft) && note.title.trim().length === 0}
+              aria-describedby={draft && !note.title.trim() ? `${id}-title-help` : undefined}
               className="note-title"
               value={note.title}
               maxLength={LIMITS.title}
@@ -121,11 +159,17 @@ export function ClientPane({
                 })
               }
             />
+            {draft && !note.title.trim() ? (
+              <p id={`${id}-title-help`} className="title-help">
+                Add a title before saving this draft.
+              </p>
+            ) : null}
             <label className="body-label" htmlFor={`${id}-body`}>
               Your note
             </label>
             <textarea
               id={`${id}-body`}
+              ref={bodyInput}
               value={note.body}
               maxLength={LIMITS.body}
               disabled={note.deleted || Boolean(conflict)}
@@ -176,6 +220,7 @@ export function ClientPane({
                 </button>
               ) : null}
             </div>
+            <span className="save-shortcut">Ctrl / ⌘ S to save</span>
             <button
               className="delete-button"
               disabled={

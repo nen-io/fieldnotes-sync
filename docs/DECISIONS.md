@@ -71,3 +71,15 @@
 **Consequences.** The demo has no server auth or remote API to secure, but origin scripts can still read plaintext storage and fabricate consistent state. Development HMR has a different browser policy. Meta CSP cannot supply header-only framing controls. Dependency pinning and tests are evidence, not a complete security audit.
 
 **Revisit when.** Adding imports, rich content, telemetry, a service worker, cross-origin assets, or an API. Update the threat model and test the actual production delivery policy before release.
+
+## ADR 007 — An index of local work and explicit editor focus
+
+**Context.** A pending counter did not identify which note needed attention, and the select menu did not distinguish queued, uncertain, and conflicted work. Creating a page left focus on the New button, preventing immediate typing into the new page.
+
+**Alternatives.** Add status text to long native select options; automatically switch to any conflicted note; or provide a separate derived work index and deliberate focus handoffs.
+
+**Decision.** Render a bounded Local work tray from each client's existing outbox and drafts. Rows navigate through the existing `select` action. The model and persistence schema remain unchanged. New-page creation selects/focuses its title, explicit conflict choices return focus to a usable field, and a scoped Ctrl/Command+S handler dispatches the existing save action.
+
+**Consequences.** Hidden drafts and conflicts become directly inspectable without mutating authority. Unknown acknowledgements are labelled separately from never-transmitted operations. Focus requests are one-shot UI effects and do not remount inputs. A tall queue scrolls within a labelled, focusable region. Shortcuts are scoped to the device pane and still use all domain validation and transaction bounds.
+
+**Revisit when.** More client panes, hundreds of notes, or a real navigation router justify a dedicated task list. Preserve the distinction between navigation, save, transmission, and acknowledgement.

@@ -39,8 +39,9 @@ Install the Playwright browser once with `npx playwright install chromium` if it
 1. Switch **both notebooks offline**. Edit the same note differently in each, then choose **Save locally**. Reload the page: both outboxes survive.
 2. Reconnect Laptop and choose **Sync device**. Reconnect Pocket, then **Pull only**. Pocket keeps its pending version; a pull never acknowledges it.
 3. Choose **Sync device** on Pocket. Compare the original base, current authority, and local version. **Keep my version** queues a new operation; sync it, then pull on Laptop to converge.
-4. Edit Laptop again, save, and arm **Lose next ACK**. Sync: the authority revision advances, but the operation stays pending. Reload and sync again. The ledger records a reused acknowledgement and the revision stays unchanged.
-5. For deletion recovery, leave an edit pending on Pocket and delete/sync the note on Laptop. Pocket's next sync conflicts. **Keep as new copy** preserves the old tombstone and creates a new note identity.
+4. Use **Local work** to jump to a draft, unsent change, or conflict on any note. New pages focus their title; **Ctrl/Command+S** saves the selected draft.
+5. Edit Laptop again, save, and arm **Lose next ACK**. Sync: the authority revision advances, but the operation stays pending. Reload and sync again. The ledger records a reused acknowledgement and the revision stays unchanged.
+6. For deletion recovery, leave an edit pending on Pocket and delete/sync the note on Laptop. Pocket's next sync conflicts. **Keep as new copy** preserves the old tombstone and creates a new note identity.
 
 Reset sample explicitly replaces the complete simulation. Export notebook downloads its current plain JSON, including both clients' drafts and pending work. The export is inspectable data; this demo intentionally has no import UI.
 
@@ -49,6 +50,7 @@ Reset sample explicitly replaces the complete simulation. Export notebook downlo
 - Revision compare-and-swap and immutable operation identity after transmission.
 - Safe coalescing of never-transmitted saves, plus successor rebasing to the exact acknowledged revision.
 - Distinct authority, client baseline, outbox projection, and unsaved draft layers.
+- A Local work tray that distinguishes queued changes, unknown acknowledgements, conflicts, and newer drafts without changing their state.
 - Lost-acknowledgement replay, explicit conflict choices, and deletion tombstones.
 - One versioned storage envelope, strict cross-reference validation, and atomic model transitions.
 - Bounded receipts that refuse new commits rather than silently forgetting deduplication authority.

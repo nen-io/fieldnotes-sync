@@ -71,3 +71,9 @@ Consulted official documentation on 17 September 2026:
 - [MDN Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy): production policy limits executable and network capabilities. A meta policy has restrictions described in `SECURITY.md`.
 
 The example's protocol and its guarantees are defined by the code and tests, not by claims that these library documents supply a complete synchronization system.
+
+## Local-work navigation refinement
+
+`components/LocalWork.tsx` derives an index of notes with drafts or pending operations. It uses the same projected titles as the editor, prioritizes conflict/uncertain/queued state, and separately marks an unsaved draft over an operation. A row invokes `select`, which cannot issue acknowledgements or mutate the authority. No cache or second outbox is introduced.
+
+`ClientPane` owns input refs and one-shot focus requests for explicit new/resolve actions. It never replaces an editor node on normal typing or synchronization. The keyboard save shortcut dispatches the same validated `save` action as the button. React's current [DOM-ref guidance](https://react.dev/learn/manipulating-the-dom-with-refs) informs the focus boundary; [Playwright's retrying focus and value assertions](https://playwright.dev/docs/test-assertions) verify actual input behavior.

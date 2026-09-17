@@ -19,3 +19,9 @@ Typing is a separate durable draft. Save queues an operation; offline save coale
 ## Readability and accessibility
 
 Supporting copy is at least 11px at the default root size; body editor is comfortable 16px. Fixed shell colors maintain contrast. All controls are native and labelled, focus is visible, statuses include words, and conflict versions are plain text in focusable scroll regions. At narrow widths the panes and authority sections stack; controls wrap at 320px and 200% text scaling. Reduced-motion disables transitions; no meaning relies on animation. No external fonts, photos or icons are required.
+
+## Refinement: finding local work
+
+The per-device Local work tray sits between the note picker and paper. It indexes only existing drafts and pending operations: each row names the note, distinguishes an unsent save from an unknown ACK or conflict, and flags a newer unsaved draft layered above a pending operation. Selecting a row changes the viewed note only. The tray is bounded by the existing note limit and scrolls with a keyboard-focusable region. Clean notebooks keep their simpler layout.
+
+Creating a page selects its placeholder title and moves focus there. Resolving a conflict returns focus to the body, or to the note picker if the chosen authority version is deleted. Ctrl/Command+S saves only the active notebook's selected draft. Empty titles get a nearby field-associated hint; errors still pass through the unchanged domain validation. These handoffs do not remount the editor while typing.

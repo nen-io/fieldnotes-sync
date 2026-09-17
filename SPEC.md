@@ -29,3 +29,9 @@ State diagram, authoritative baseline/outbox/projection definitions, revision/de
 
 ## Completion gate
 Implement the behavior and acceptance tests above; document any deliberate limitation. `npm run check` and `npm run test:e2e` must pass. Independently review the code and exercise the production build before release. Verify the public demo at its GitHub repository subpath.
+
+## Usability refinement
+
+- Each device exposes a read-only Local work tray for all drafts and pending notes, including unselected conflicts and uncertain acknowledgements. Navigation cannot clear or acknowledge work.
+- New note focuses and selects its title; conflict resolution returns focus to an editable field or note picker. Ctrl/Command+S queues the selected draft using the existing save transition.
+- Title validation is associated with the title field. Local work remains readable and keyboard navigable at 320px and 200% text scaling.

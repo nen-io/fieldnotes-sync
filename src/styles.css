@@ -1525,3 +1525,119 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+.local-work {
+  padding: 16px 23px;
+  background: #edf3e7;
+  border-bottom: 1px solid #cbd8c0;
+}
+.local-work-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  color: #3f5b35;
+}
+.local-work-heading > strong {
+  font-weight: 650;
+}
+.local-work-heading > span {
+  font-size: 0.6875rem;
+}
+.work-list {
+  max-height: 205px;
+  overflow: auto;
+  border: 1px solid #c5d3ba;
+  border-radius: 6px;
+  background: #fffef8;
+}
+.work-note {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #dce4d3;
+  border-radius: 0;
+  padding: 11px 12px;
+}
+.work-note:last-child {
+  border-bottom: 0;
+}
+.work-note[aria-pressed='true'] {
+  box-shadow: inset 3px 0 #537347;
+  background: #f1f5e9;
+}
+.work-note > span:first-child {
+  min-width: 0;
+}
+.work-note strong {
+  font-size: 0.75rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  display: block;
+}
+.work-state {
+  display: block;
+  font-size: 0.6875rem;
+  margin-top: 5px;
+  color: #526b43;
+  line-height: 1.5;
+}
+.work-operation {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #526b43;
+  text-align: right;
+  flex-shrink: 0;
+}
+.work-note.conflict .work-state,
+.work-note.uncertain .work-state {
+  color: #874428;
+}
+.local-work > p {
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  color: #516b43;
+  margin-top: 10px;
+}
+.title-help {
+  font-size: 0.75rem;
+  color: #873e25;
+  margin-top: 9px;
+  line-height: 1.6;
+}
+.save-shortcut {
+  font-size: 0.6875rem;
+  color: #516b43;
+  margin-left: auto;
+}
+.note-actions {
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .local-work {
+    padding: 16px 20px;
+  }
+  .save-shortcut {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 380px) {
+  .local-work {
+    padding: 15px;
+  }
+  .work-note {
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .work-operation {
+    text-align: left;
+  }
+}

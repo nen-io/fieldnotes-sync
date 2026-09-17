@@ -50,8 +50,8 @@ Executed on 17 September 2026 after the final source formatting pass:
 | Check                                                        | Actual result                                                                     |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | `npm run check`                                              | Passed: strict TypeScript, 19 Vitest tests, and production build                  |
-| `npm run test:e2e`                                           | Passed: 9 Chromium journeys against the development server                        |
-| `npm run test:e2e:production`                                | Passed: a fresh production build plus all 9 Chromium journeys with CSP active     |
+| `npm run test:e2e`                                           | Passed: 13 Chromium journeys against the development server                       |
+| `npm run test:e2e:production`                                | Passed: a fresh production build plus all 13 Chromium journeys with CSP active    |
 | Prettier check over source/tests/configuration/docs/fixtures | Passed                                                                            |
 | Desktop and mobile screenshots                               | Captured from the production build's real conflict state, then visually inspected |
 
@@ -70,3 +70,9 @@ The final independent release review found zero axe WCAG 2/2.1 AA violations in 
 - The tests do not claim production multi-tab synchronization, authenticated storage, secure deletion, automatic merge, or exactly-once remote side effects.
 - Unit execution times and production bundle sizes are not load tests or throughput benchmarks.
 - The production CSP test verifies actual behavior in the built app; framing headers and public-host delivery still require deployment review.
+
+## Refinement verification
+
+The new-page keyboard regression was run before the fix: `npm run test:e2e -- --grep 'new notebook page'` failed because the title was inactive after New. The unchanged assertion now passes and verifies typing replaces the selected placeholder title. `tests/e2e/refinement.spec.ts` adds four real browser cases: that focus handoff; Local work with lost ACK, a newer draft, multiple notes and reload; navigation to an unselected conflict plus resolution focus; and empty-title/320px/200%-text behavior.
+
+The refinement run passed `npm run check` (19 domain tests, typecheck/build), all 13 development journeys, and all 13 production journeys with CSP active. The original nine journeys remain in `notebook.spec.ts`; four new journeys are in `refinement.spec.ts`. Actual production desktop/mobile conflict screenshots were refreshed and visually inspected. Dependencies and protocol/persistence schemas are unchanged.
