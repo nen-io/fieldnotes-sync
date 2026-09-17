@@ -59,9 +59,11 @@ The implementation review additionally exercised browser conflict, lost-ACK, del
 
 An independent automated axe check of the initial and populated views is a release review input. It does not constitute accessibility certification or replace screen-reader, keyboard, device, or visual review. Supporting text is at least 11 CSS pixels at the default root size, controls have visible focus, and reduced-motion styling disables transitions.
 
-## What is not established
+## Independent release review
 
 The final independent release review found zero axe WCAG 2/2.1 AA violations in both the initial notebook and a populated conflict view after contrast corrections. A separate repository-subpath production check exercised lost-acknowledgement retry, unchanged revision on replay, convergence after pull, reload, and the actual JSON download with CSP active. CI runs both development and production browser suites.
+
+## What is not established
 
 - Chromium automation does not establish Safari/Firefox behavior, iOS text scaling, VoiceOver/NVDA usability, or real mobile keyboard ergonomics.
 - Simulated offline flags do not test an actual unreliable network, reconnection transport, server crash, multi-process database, or browser disk-flush behavior.
